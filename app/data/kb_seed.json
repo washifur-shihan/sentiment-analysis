@@ -1,0 +1,27 @@
+[
+  {
+    "id": "rule-001",
+    "text": "If a text contains words like broken, useless, terrible, or not working, it often indicates negative or frustrated sentiment.",
+    "category": "negative_rule"
+  },
+  {
+    "id": "rule-002",
+    "text": "If a text contains words like urgent, asap, immediately, or critical, it often indicates urgent sentiment.",
+    "category": "urgent_rule"
+  },
+  {
+    "id": "rule-003",
+    "text": "If a text contains thanks, appreciate, great job, or helpful, it often indicates positive sentiment.",
+    "category": "positive_rule"
+  },
+  {
+    "id": "rule-004",
+    "text": "If a text contains both praise and complaint, it may indicate mixed sentiment.",
+    "category": "mixed_rule"
+  },
+  {
+    "id": "rule-005",
+    "text": "Frustrated sentiment is stronger than ordinary negative sentiment and often includes repeated complaints, dissatisfaction, or emotional intensity.",
+    "category": "definition"
+  }
+]
