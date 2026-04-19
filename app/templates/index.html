@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sentiment Agent</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
+</head>
+<body>
+    <div class="page">
+        <div class="container">
+            <header class="hero">
+                <div>
+                    <p class="eyebrow">AI Sentiment Detection</p>
+                    <h1>Analyze sentiment with NSL, RAG, and Pinecone</h1>
+                    <p class="subtitle">
+                        Enter any text and get a sentiment label, confidence score,
+                        short summary, matched rules, and retrieved evidence.  
+                        Developed by Washifur Rahman.
+                    </p>
+                </div>
+            </header>
+
+            <section class="card form-card">
+                <form method="post" action="/">
+                    <label for="text" class="label">Input text</label>
+                    <textarea
+                        id="text"
+                        name="text"
+                        placeholder="Type or paste text here..."
+                        required
+                    >{{ text }}</textarea>
+
+                    <div class="actions">
+                        <button type="submit">Analyze sentiment</button>
+                    </div>
+                </form>
+            </section>
+
+            {% if result %}
+            <section class="results-grid">
+                <div class="card result-card">
+                    <div class="card-header">
+                        <h2>Result</h2>
+                        <span class="badge badge-{{ result.label | lower }}">{{ result.label }}</span>
+                    </div>
+
+                    <div class="meta-grid">
+                        <div class="meta-item">
+                            <span class="meta-label">Confidence</span>
+                            <span class="meta-value">{{ "%.2f"|format(result.confidence) }}</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Summary</span>
+                            <span class="meta-value">{{ result.summary }}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2>Matched Rules</h2>
+                    {% if result.matched_rules %}
+                        <div class="chip-wrap">
+                            {% for rule in result.matched_rules %}
+                                <span class="chip">{{ rule }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <p class="muted">No explicit rules matched.</p>
+                    {% endif %}
+                </div>
+
+                <div class="card evidence-card">
+                    <h2>Retrieved Evidence</h2>
+                    {% if result.evidence %}
+                        <ul class="evidence-list">
+                            {% for item in result.evidence %}
+                                <li>{{ item }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p class="muted">No supporting evidence retrieved.</p>
+                    {% endif %}
+                </div>
+            </section>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
