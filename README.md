@@ -1,7 +1,5 @@
 # 🚀 Sentiment Detection Agent (RAG + NSL + FastAPI)
 
-🔗 **Live Demo:** https://your-live-demo-link.com *(dummy link)*
-
 ---
 
 ## 📌 Overview
